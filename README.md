@@ -2,6 +2,12 @@
 
 A simple React application for managing music tracks, built with Vite and Material-UI.
 
+## Architecture Decision Records (ADRs)
+
+This project uses Architecture Decision Records (ADRs) to document important architectural decisions made along with their context and consequences.
+
+- [ADR-0001: TypeScript Adoption](docs/adr/0001-typescript-adoption.md)
+
 ## Getting Started
 
 To install dependencies and run the app locally:
