@@ -13,6 +13,43 @@ The application is currently using JavaScript with React. While the project alre
 3. Difficulty in maintaining and refactoring code without type information
 4. Inconsistent code structure due to the absence of type definitions
 
+## Considered Alternatives
+
+1. **PropTypes (React’s built-in runtime type checking)**
+    - Pros:
+        - Minimal configuration; already bundled with React
+        - Runtime validation of component props
+    - Cons:
+        - Only validates props at runtime (not function signatures or data models)
+        - No IDE support for non‐component code; limited to React components
+        - Less comprehensive than a full-blown type system
+
+2. **Validation Libraries (e.g. Joi, Zod)**
+    - Pros:
+        - Strong runtime schema validation for API inputs/outputs
+        - Can be used both on client and server
+    - Cons:
+        - Still requires manual checks at each boundary; no compile-time guarantees
+        - Additional learning curve for schema definitions
+        - Doesn’t provide IDE autocompletion or enforce types across the entire codebase
+
+3. **Plain JavaScript with JSDoc Annotations**
+    - Pros:
+        - Can add JSDoc comments to get some IDE hints without full migration
+        - No build-step changes required
+    - Cons:
+        - JSDoc-based type hints are less strict and can be bypassed
+        - Lacks enforcement anywhere beyond the developer’s editor; no CI-level type checking
+
+4. **Staying on Plain JavaScript without Additional Checks**
+    - Pros:
+        - No migration effort; zero upfront cost
+    - Cons:
+        - Continues to allow many potential runtime errors
+        - No improvement in IDE support or refactoring safety
+
+After evaluating these options, we conclude that **TypeScript** provides the strongest compile-time guarantees, IDE integration, and long-term maintainability for our codebase. While PropTypes and schema validators catch some issues at runtime, they cannot enforce correct types throughout the application or prevent synchronous runtime errors. JSDoc helps with hints, but it’s not as reliable as a full type system. Therefore, we will adopt TypeScript.
+
 ## Decision
 
 We will adopt TypeScript as the primary language for the music-tracks application. This includes:
@@ -48,8 +85,8 @@ We will adopt TypeScript as the primary language for the music-tracks applicatio
 
 ## Implementation Plan
 
-1. Add TypeScript configuration (`tsconfig.json`)
-2. Convert existing files gradually, starting with core components
+1. Add TypeScript configuration (`tsconfig.json`) and enable `"strict": true`
+2. Convert existing files gradually, starting with core components (starting from `common` components, `api` requests and `hooks`). For any complex migrations, temporarily suppress individual errors with `// @ts-ignore` but add a TODO to remove it before merging to `main`.
 3. Add type definitions for external dependencies
 4. Update build and development scripts
 5. Add TypeScript-specific ESLint rules
