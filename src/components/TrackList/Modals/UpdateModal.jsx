@@ -1,10 +1,10 @@
 import { Typography } from "@mui/material";
 
-import Modal from "../../common/Modal.jsx";
-import useTrack from "../../../hooks/useTrack.js";
-import Progress from "../../common/Progress.jsx";
+import Modal from "../../common/Modal.tsx";
+import useTrack from "../../../hooks/useTrack.ts";
+import Progress from "../../common/Progress.tsx";
 import TrackForm from "../TrackForm/TrackForm.jsx";
-import useUpdateTrackMutation from "../../../hooks/useUpdateTrackMutation.js";
+import useUpdateTrackMutation from "../../../hooks/useUpdateTrackMutation.ts";
 
 export function UpdateModal() {
   const { data: track, isLoading, isError } = useTrack();

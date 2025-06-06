@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { Modal as MUIModal, Box, IconButton, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import type { ReactNode } from "react";
 
-export function Modal({ children, header }) {
+interface ModalProps {
+  children: ReactNode;
+  header: string;
+}
+export function Modal({ children, header }: ModalProps) {
   const navigate = useNavigate();
 
   function handleCloseModal() {

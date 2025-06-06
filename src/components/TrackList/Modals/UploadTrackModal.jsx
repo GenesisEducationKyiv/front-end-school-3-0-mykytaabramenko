@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
 
-import Modal from "../../common/Modal.jsx";
-import useTrack from "../../../hooks/useTrack.js";
-import Progress from "../../common/Progress.jsx";
+import Modal from "../../common/Modal.tsx";
+import useTrack from "../../../hooks/useTrack.ts";
+import Progress from "../../common/Progress.tsx";
 import UploadTrackForm from "../UploadForm/UploadForm.jsx";
 
 export function UploadTrackModal() {

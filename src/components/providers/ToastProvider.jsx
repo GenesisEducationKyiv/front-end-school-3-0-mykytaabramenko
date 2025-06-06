@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ToastContext } from "../contexts/ToastContext.js";
+import { ToastContext } from "../contexts/ToastContext.ts";
 
 export function ToastProvider({ children }) {
   const [toast, setToast] = useState({ open: false });
@@ -12,7 +12,7 @@ export function ToastProvider({ children }) {
     });
   }
 
-  function hideToast(_, reason) {
+  function hideToast(reason) {
     if (reason === "clickaway") return;
     setToast((prev) => ({
       ...prev,
