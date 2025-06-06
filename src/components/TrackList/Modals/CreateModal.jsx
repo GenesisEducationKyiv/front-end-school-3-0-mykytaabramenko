@@ -1,6 +1,6 @@
-import Modal from "../../common/Modal.jsx";
+import Modal from "../../common/Modal.tsx";
 import TrackForm from "../TrackForm/TrackForm.jsx";
-import useCreateTrackMutation from "../../../hooks/useCreateTrackMutation.js";
+import useCreateTrackMutation from "../../../hooks/useCreateTrackMutation.ts";
 
 export function CreateModal() {
   const createMutation = useCreateTrackMutation();

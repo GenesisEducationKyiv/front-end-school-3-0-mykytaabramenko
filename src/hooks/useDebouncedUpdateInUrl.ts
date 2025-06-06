@@ -1,12 +1,17 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import useDebounce from "./useDebounce.js";
+import useDebounce from "./useDebounce.ts";
 import {
   DefaultTrackListSearchParams,
   TrackListSearchParams,
-} from "../constants.js";
+} from "../constants.ts";
+import type { ListTrackParams } from "../api/types/track.ts";
 
-export function useDebouncedUpdateInUrl(key, value, defaultValue = "") {
+export function useDebouncedUpdateInUrl(
+  key: keyof ListTrackParams,
+  value: string,
+  defaultValue = "",
+) {
   const [searchParams, setSearchParams] = useSearchParams();
   const debouncedValue = useDebounce(value, 500);
 
@@ -23,7 +28,7 @@ export function useDebouncedUpdateInUrl(key, value, defaultValue = "") {
 
     newParams.set(
       TrackListSearchParams.PAGE,
-      DefaultTrackListSearchParams.PAGE,
+      DefaultTrackListSearchParams.PAGE.toString(),
     );
     setSearchParams(newParams);
   }, [debouncedValue, setSearchParams, searchParams, key, value, defaultValue]);

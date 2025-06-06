@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { TextField } from "@mui/material";
 
-import useDebouncedUpdateInUrl from "../../../hooks/useDebouncedUpdateInUrl.js";
-import { TrackListSearchParams } from "../../../constants.js";
+import useDebouncedUpdateInUrl from "../../../hooks/useDebouncedUpdateInUrl.ts";
+import { TrackListSearchParams } from "../../../constants.ts";
 
 export function SearchFilter() {
   const [search, setSearch] = useState("");

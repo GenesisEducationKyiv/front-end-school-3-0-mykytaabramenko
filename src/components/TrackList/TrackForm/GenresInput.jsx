@@ -1,9 +1,9 @@
 import { Controller } from "react-hook-form";
 import { Autocomplete, Chip } from "@mui/material";
 
-import useGenres from "../../../hooks/useGenres.js";
-import Progress from "../../common/Progress.jsx";
-import TextInput from "../../common/TextInput.jsx";
+import useGenres from "../../../hooks/useGenres.ts";
+import Progress from "../../common/Progress.tsx";
+import TextInput from "../../common/TextInput.tsx";
 
 export function GenresInput({ control }) {
   const { isLoading, data } = useGenres();

@@ -1,10 +1,10 @@
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-import useTrackListSearchParams from "../../../hooks/useTrackListSearchParams.js";
+import useTrackListSearchParams from "../../../hooks/useTrackListSearchParams.ts";
 import {
   DefaultTrackListSearchParams,
   TrackListSearchParams,
-} from "../../../constants.js";
+} from "../../../constants.ts";
 
 const OPTIONS = [
   { value: "title", label: "Title" },
