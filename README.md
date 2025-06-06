@@ -65,6 +65,10 @@ Some of the test IDs used throughout the app:
 - **Styling:** Styled Components
 - **Backend:** Node.js API (provided separately)
 
+## Documentation
+
+For detailed design decisions, see [ADR Index](docs/adr/index.md).
+
 ## License
 
 This project is for educational purposes.
