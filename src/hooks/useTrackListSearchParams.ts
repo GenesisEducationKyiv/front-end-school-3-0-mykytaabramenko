@@ -6,6 +6,7 @@ import {
   TrackListSearchParams,
   TrackListSortOptions,
 } from "../constants";
+import { O, pipe } from "@mobily/ts-belt";
 import type { ListTrackParams, Order, SortOption } from "../api/types/track";
 
 export function useTrackListSearchParams(): [
@@ -15,17 +16,17 @@ export function useTrackListSearchParams(): [
   const [searchParams, setSearchParams] = useSearchParams();
 
   const parsedSearchParams = useMemo(() => {
-    const pageSearchParam = searchParams.get(TrackListSearchParams.PAGE);
-    const page =
-      pageSearchParam !== null
-        ? +pageSearchParam
-        : DefaultTrackListSearchParams.PAGE;
+    const page = getNumberParam(
+      searchParams,
+      TrackListSearchParams.PAGE,
+      DefaultTrackListSearchParams.PAGE,
+    );
 
-    const limitSearchParam = searchParams.get(TrackListSearchParams.LIMIT);
-    const limit =
-      limitSearchParam !== null
-        ? +limitSearchParam
-        : DefaultTrackListSearchParams.LIMIT;
+    const limit = getNumberParam(
+      searchParams,
+      TrackListSearchParams.LIMIT,
+      DefaultTrackListSearchParams.LIMIT,
+    );
 
     const artist = searchParams.get(TrackListSearchParams.ARTIST);
     const genre = searchParams.get(TrackListSearchParams.GENRE);
@@ -51,30 +52,32 @@ function isValidSearchParameter<T>(value: unknown, options: T[]): value is T {
   return options.includes(value as T);
 }
 
-function getValidatedSearchParam<T>(
+function getNumberParam(
   searchParams: URLSearchParams,
   key: string,
-  validator: (value: unknown) => value is T,
-): T | null;
+  defaultValue: number,
+) {
+  return pipe(
+    O.fromNullable(searchParams.get(key)),
+    O.flatMap((value) => {
+      const n = Number(value);
+      return isNaN(n) ? O.None : O.Some(n);
+    }),
+    O.getWithDefault(defaultValue),
+  );
+}
 
 function getValidatedSearchParam<T>(
   searchParams: URLSearchParams,
   key: string,
-  validator: (value: unknown) => value is T,
-  defaultValue: T,
-): T;
-
-function getValidatedSearchParam<T>(
-  searchParams: URLSearchParams,
-  key: string,
-  validator: (value: unknown) => value is T,
-  defaultValue: T | null = null,
-): T | null {
-  const param = searchParams.get(key);
-  if (!param) return defaultValue;
-  if (!validator(param)) return defaultValue;
-
-  return param;
+  validOptions: T[],
+): O.Option<T> {
+  return pipe(
+    O.fromNullable(searchParams.get(key)),
+    O.flatMap((value) =>
+      isValidSearchParameter(value, validOptions) ? O.Some(value) : O.None,
+    ),
+  );
 }
 
 type SortAndOrderShape =
@@ -82,20 +85,29 @@ type SortAndOrderShape =
   | { sort: null; order: null };
 
 function getSortAndOrder(searchParams: URLSearchParams): SortAndOrderShape {
-  const sort = getValidatedSearchParam(searchParams, "sort", (value) =>
-    isValidSearchParameter(value, Object.values(TrackListSortOptions)),
+  return pipe(
+    getValidatedSearchParam(
+      searchParams,
+      TrackListSearchParams.SORT,
+      Object.values(TrackListSortOptions),
+    ),
+    O.match<SortOption, SortAndOrderShape>(
+      (sort) => {
+        const order = pipe(
+          getValidatedSearchParam(
+            searchParams,
+            TrackListSearchParams.ORDER,
+            Object.values(OrderOptions),
+          ),
+          (value) =>
+            O.getWithDefault(value, DefaultTrackListSearchParams.ORDER),
+        );
+
+        return { sort, order };
+      },
+      () => ({ sort: null, order: null }),
+    ),
   );
-
-  if (!sort) return { sort: null, order: null };
-
-  const order = getValidatedSearchParam(
-    searchParams,
-    "order",
-    (value) => isValidSearchParameter(value, Object.values(OrderOptions)),
-    DefaultTrackListSearchParams.ORDER,
-  );
-
-  return { sort, order };
 }
 
 export default useTrackListSearchParams;
