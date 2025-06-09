@@ -1,11 +1,11 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { loadTrackBySlug } from "../api/endpoints";
 import { useParams } from "react-router-dom";
-import useTrackListSearchParams from "./useTrackListSearchParams.ts";
-import type { TrackListResponse } from "../api/types/track.ts";
+import useTrackListSearchParams from "./useTrackListSearchParams";
+import type { TrackListResponse } from "../api/types/track";
 
 export function useTrack() {
-  const { slug } = useParams();
+  const slug = useTrackSlug();
   const queryClient = useQueryClient();
 
   const [trackListSearchParams] = useTrackListSearchParams();
@@ -16,11 +16,19 @@ export function useTrack() {
 
   return useQuery({
     queryKey: ["track", slug],
-    queryFn: () => loadTrackBySlug(slug as string),
+    queryFn: () => loadTrackBySlug(slug),
     initialData: fromList,
     enabled: !!slug && !fromList,
     staleTime: fromList ? Infinity : 0,
   });
+}
+
+function useTrackSlug() {
+  const { slug } = useParams();
+  if (!slug) {
+    throw new Error("Track slug is required");
+  }
+  return slug;
 }
 
 export default useTrack;

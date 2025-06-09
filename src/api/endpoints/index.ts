@@ -1,2 +1,2 @@
-export * from "./track.ts";
-export * from "./genre.ts";
+export * from "./track";
+export * from "./genre";

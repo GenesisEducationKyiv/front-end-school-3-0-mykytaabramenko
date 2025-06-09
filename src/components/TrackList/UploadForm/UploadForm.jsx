@@ -16,12 +16,12 @@ export function UploadTrackForm({ trackId }) {
     reValidateMode: "onChange",
   });
 
-  const mutation = useUploadTrackMutation(trackId);
+  const mutation = useUploadTrackMutation();
 
   const onSubmit = (data) => {
     const file = data.file[0];
     const formData = { data: file };
-    mutation.mutate(formData);
+    mutation.mutate({ id: trackId, ...formData });
   };
 
   function handleValidateFile(files) {

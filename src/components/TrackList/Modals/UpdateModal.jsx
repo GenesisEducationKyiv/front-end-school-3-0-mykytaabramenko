@@ -8,10 +8,10 @@ import useUpdateTrackMutation from "../../../hooks/useUpdateTrackMutation.ts";
 
 export function UpdateModal() {
   const { data: track, isLoading, isError } = useTrack();
-  const updateMutation = useUpdateTrackMutation(track);
+  const updateMutation = useUpdateTrackMutation();
 
   function handleSubmit(values) {
-    return updateMutation.mutate(values);
+    return updateMutation.mutate({ id: track.id, ...values });
   }
 
   if (isLoading) return <Progress />;

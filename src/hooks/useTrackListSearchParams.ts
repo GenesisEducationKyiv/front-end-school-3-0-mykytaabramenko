@@ -5,8 +5,8 @@ import {
   OrderOptions,
   TrackListSearchParams,
   TrackListSortOptions,
-} from "../constants.ts";
-import type { ListTrackParams, Order, SortOption } from "../api/types/track.ts";
+} from "../constants";
+import type { ListTrackParams, Order, SortOption } from "../api/types/track";
 
 export function useTrackListSearchParams(): [
   ListTrackParams,
@@ -45,34 +45,36 @@ export function useTrackListSearchParams(): [
   return [parsedSearchParams, setSearchParams];
 }
 
-function isValidSortOption(value: unknown): value is SortOption {
+function isValidSearchParameter<T>(value: unknown, options: T[]): value is T {
   if (typeof value !== "string") return false;
 
-  const allSortOptions = Object.values(TrackListSortOptions) as SortOption[];
-  return allSortOptions.includes(value as SortOption);
+  return options.includes(value as T);
 }
 
-function isValidOrder(value: unknown): value is Order {
-  if (typeof value !== "string") return false;
+function getValidatedSearchParam<T>(
+  searchParams: URLSearchParams,
+  key: string,
+  validator: (value: unknown) => value is T,
+): T | null;
 
-  const allOrderOptions = Object.values(OrderOptions) as Order[];
-  return allOrderOptions.includes(value as Order);
-}
+function getValidatedSearchParam<T>(
+  searchParams: URLSearchParams,
+  key: string,
+  validator: (value: unknown) => value is T,
+  defaultValue: T,
+): T;
 
-function getSortSearchParam(searchParams: URLSearchParams) {
-  const sort = searchParams.get(TrackListSearchParams.SORT);
-  if (!sort) return null;
-  if (!isValidSortOption(sort)) return null;
+function getValidatedSearchParam<T>(
+  searchParams: URLSearchParams,
+  key: string,
+  validator: (value: unknown) => value is T,
+  defaultValue: T | null = null,
+): T | null {
+  const param = searchParams.get(key);
+  if (!param) return defaultValue;
+  if (!validator(param)) return defaultValue;
 
-  return sort;
-}
-
-function getOrderSearchParam(searchParams: URLSearchParams) {
-  const order = searchParams.get(TrackListSearchParams.ORDER);
-  if (!order) return DefaultTrackListSearchParams.ORDER;
-  if (!isValidOrder(order)) return DefaultTrackListSearchParams.ORDER;
-
-  return order;
+  return param;
 }
 
 type SortAndOrderShape =
@@ -80,11 +82,18 @@ type SortAndOrderShape =
   | { sort: null; order: null };
 
 function getSortAndOrder(searchParams: URLSearchParams): SortAndOrderShape {
-  const sort = getSortSearchParam(searchParams);
+  const sort = getValidatedSearchParam(searchParams, "sort", (value) =>
+    isValidSearchParameter(value, Object.values(TrackListSortOptions)),
+  );
 
   if (!sort) return { sort: null, order: null };
 
-  const order = getOrderSearchParam(searchParams);
+  const order = getValidatedSearchParam(
+    searchParams,
+    "order",
+    (value) => isValidSearchParameter(value, Object.values(OrderOptions)),
+    DefaultTrackListSearchParams.ORDER,
+  );
 
   return { sort, order };
 }

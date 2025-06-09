@@ -1,36 +1,25 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateTrack } from "../api/endpoints";
-import { useToastContext } from "../components/contexts/ToastContext.ts";
 import { useNavigate } from "react-router-dom";
-import type { Track, UpdateTrackPayload } from "../api/types/track.ts";
+import type { Track, UpdateTrackPayload } from "../api/types/track";
+import useHandleMutationResult from "./useHandleMutationResult";
 
-export function useUpdateTrackMutation(track: Track) {
+interface UpdateTrackMutationInput extends UpdateTrackPayload {
+  id: Track["id"];
+}
+
+export function useUpdateTrackMutation() {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const { showToast } = useToastContext();
-
-  function handleSuccess(updatedTrack: Track) {
-    queryClient.invalidateQueries({ queryKey: ["tracks"] });
-    queryClient.setQueryData(["track", track.slug], updatedTrack);
-    navigate("/tracks");
-    showToast?.({
-      message: "Track updated successfully",
-      severity: "success",
-    });
-  }
-
-  function handleError(error: Error) {
-    queryClient.invalidateQueries({ queryKey: ["tracks"] });
-    showToast?.({
-      message: error?.message || "Failed to update track",
-      severity: "error",
-    });
-  }
-
-  return useMutation<Track, Error, UpdateTrackPayload>({
-    mutationFn: (vals) => updateTrack(track.id, vals),
-    onSuccess: handleSuccess,
-    onError: handleError,
+  return useHandleMutationResult<Track, UpdateTrackMutationInput>({
+    queryKey: ["tracks"],
+    mutationFn: async (vals) => {
+      const { id, ...restData } = vals;
+      return await updateTrack(id, restData);
+    },
+    toastMessages: {
+      successToastMsg: "Track updated successfully",
+      errorToastMsg: "Failed to update track",
+    },
+    onSuccess: () => navigate("/tracks"),
   });
 }
 

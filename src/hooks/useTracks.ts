@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import useTrackListSearchParams from "./useTrackListSearchParams.ts";
+import useTrackListSearchParams from "./useTrackListSearchParams";
 import { listTracks } from "../api/endpoints";
 
 export function useTracks() {

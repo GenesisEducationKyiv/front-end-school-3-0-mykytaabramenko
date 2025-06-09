@@ -1,5 +1,5 @@
 import { Alert, Snackbar, type AlertProps } from "@mui/material";
-import type { AlertSeverity } from "../../types/toast.ts";
+import type { AlertSeverity } from "../../types/toast";
 import type { ReactNode } from "react";
 
 interface ToastProps {

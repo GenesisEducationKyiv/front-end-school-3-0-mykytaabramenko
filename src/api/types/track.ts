@@ -1,5 +1,5 @@
-import type { Genre } from "./genre.ts";
-import { OrderOptions, type TrackListSortOptions } from "../../constants.ts";
+import type { Genre } from "./genre";
+import { OrderOptions, type TrackListSortOptions } from "../../constants";
 
 export type SortOption =
   (typeof TrackListSortOptions)[keyof typeof TrackListSortOptions];

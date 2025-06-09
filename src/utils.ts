@@ -1,10 +1,6 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
-
-interface ApiErrorResponse {
-  error?: string;
-}
 
 export async function validateImageUrl(url: string) {
   return new Promise((resolve) => {
@@ -39,8 +35,7 @@ export function handleApiError(e: unknown): never {
   const fallbackMessage = `Error while performing API call: ${e.message}`;
 
   if (axios.isAxiosError(e)) {
-    const apiError = e as AxiosError<ApiErrorResponse>;
-    throw new Error(apiError.response?.data?.error || fallbackMessage);
+    throw new Error(e.response?.data?.error || fallbackMessage);
   }
 
   throw new Error(fallbackMessage);
