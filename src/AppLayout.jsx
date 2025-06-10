@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Box, Container } from "@mui/material";
-import Toast from "./components/common/Toast.tsx";
-import { useToastContext } from "./components/contexts/ToastContext.ts";
+import Toast from "./components/common/Toast";
+import { useToastContext } from "./components/contexts/ToastContext";
 
 export default function AppLayout() {
   const { toast, hideToast } = useToastContext();

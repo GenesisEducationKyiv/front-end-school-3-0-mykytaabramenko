@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import AppLayout from "./AppLayout.jsx";
-import Tracks from "./pages/Tracks.jsx";
-import UpdateModal from "./components/TrackList/Modals/UpdateModal.jsx";
-import CreateModal from "./components/TrackList/Modals/CreateModal.jsx";
-import NotFound from "./pages/NotFound.jsx";
-import UploadTrackModal from "./components/TrackList/Modals/UploadTrackModal.jsx";
+import AppLayout from "./AppLayout";
+import Tracks from "./pages/Tracks";
+import UpdateModal from "./components/TrackList/Modals/UpdateModal";
+import CreateModal from "./components/TrackList/Modals/CreateModal";
+import NotFound from "./pages/NotFound";
+import UploadTrackModal from "./components/TrackList/Modals/UploadTrackModal";
 
 export function AppRoutes() {
   return (

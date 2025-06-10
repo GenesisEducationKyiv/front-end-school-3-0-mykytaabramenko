@@ -1,4 +1,4 @@
-import { post, put, del, get } from "../client";
+import { post, put, remove, get } from "../client";
 import type {
   CreateTrackPayload,
   ListTrackParams,
@@ -31,7 +31,7 @@ export async function uploadTrack(id: Track["id"], data: UploadTrackPayload) {
 }
 
 export async function deleteTrack(id: Track["id"]) {
-  return await del<void>(`${RESOURCE}/${id}`);
+  return await remove<void>(`${RESOURCE}/${id}`);
 }
 
 export async function loadTrackBySlug(slug: Track["slug"]) {
@@ -39,7 +39,7 @@ export async function loadTrackBySlug(slug: Track["slug"]) {
 }
 
 export async function listTracks(params: ListTrackParams) {
-  return await get<TrackListResponse>(RESOURCE, {
+  return await get<TrackListResponse, ListTrackParams>(RESOURCE, {
     params,
   });
 }

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { createTrack } from "../api/endpoints";
-import useHandleMutationResult from "./useHandleMutationResult";
+import { createTrack } from "../../api/endpoints";
+import useHandleMutationResult from "../useHandleMutationResult";
 
 export function useCreateTrackMutation() {
   const navigate = useNavigate();

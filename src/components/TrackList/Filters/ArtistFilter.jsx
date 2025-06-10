@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { TextField } from "@mui/material";
 
-import useDebouncedUpdateInUrl from "../../../hooks/useDebouncedUpdateInUrl.ts";
-import { TrackListSearchParams } from "../../../constants.ts";
+import useDebouncedUpdateInUrl from "../../../hooks/useDebouncedUpdateInUrl";
+import { TrackListSearchParams } from "../../../constants";
 
 export function ArtistFilter() {
   const [artist, setArtist] = useState("");

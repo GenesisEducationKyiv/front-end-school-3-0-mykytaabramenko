@@ -1,6 +1,6 @@
-import { uploadTrack } from "../api/endpoints";
-import type { Track, UploadTrackPayload } from "../api/types/track";
-import useHandleMutationResult from "./useHandleMutationResult";
+import { uploadTrack } from "../../api/endpoints";
+import type { Track, UploadTrackPayload } from "../../api/types/track";
+import useHandleMutationResult from "../useHandleMutationResult";
 import { useNavigate } from "react-router-dom";
 
 interface UploadTrackMutationInput extends UploadTrackPayload {

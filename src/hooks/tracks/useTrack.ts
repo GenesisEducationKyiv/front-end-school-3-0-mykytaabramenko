@@ -1,8 +1,8 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { loadTrackBySlug } from "../api/endpoints";
+import { loadTrackBySlug } from "../../api/endpoints";
 import { useParams } from "react-router-dom";
 import useTrackListSearchParams from "./useTrackListSearchParams";
-import type { TrackListResponse } from "../api/types/track";
+import type { TrackListResponse } from "../../api/types/track";
 
 export function useTrack() {
   const slug = useTrackSlug();

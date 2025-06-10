@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useTrackListSearchParams from "./useTrackListSearchParams";
-import { listTracks } from "../api/endpoints";
+import { listTracks } from "../../api/endpoints";
 
 export function useTracks() {
   const [params] = useTrackListSearchParams();

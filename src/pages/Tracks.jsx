@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
 
-import TrackList from "../components/trackList/TrackList.jsx";
-import Actions from "../components/trackList/Actions.jsx";
-import AudioProvider from "../components/providers/AudioProvider.jsx";
-import CreateButton from "../components/TrackList/CreateButton.jsx";
-import { useTracks } from "../hooks/useTracks.ts";
+import TrackList from "../components/trackList/TrackList";
+import Actions from "../components/trackList/Actions";
+import AudioProvider from "../components/providers/AudioProvider";
+import CreateButton from "../components/TrackList/CreateButton";
+import { useTracks } from "../hooks/tracks/useTracks.js";
 
 function Tracks() {
   const { isFetching, data: { data: tracks, meta } = {} } = useTracks();

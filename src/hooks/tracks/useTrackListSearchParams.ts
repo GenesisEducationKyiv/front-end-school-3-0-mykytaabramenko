@@ -5,8 +5,8 @@ import {
   OrderOptions,
   TrackListSearchParams,
   TrackListSortOptions,
-} from "../constants";
-import type { ListTrackParams, Order, SortOption } from "../api/types/track";
+} from "../../constants";
+import type { ListTrackParams, Order, SortOption } from "../../api/types/track";
 
 export function useTrackListSearchParams(): [
   ListTrackParams,

@@ -1,7 +1,7 @@
-import { updateTrack } from "../api/endpoints";
+import { updateTrack } from "../../api/endpoints";
 import { useNavigate } from "react-router-dom";
-import type { Track, UpdateTrackPayload } from "../api/types/track";
-import useHandleMutationResult from "./useHandleMutationResult";
+import type { Track, UpdateTrackPayload } from "../../api/types/track";
+import useHandleMutationResult from "../useHandleMutationResult";
 
 interface UpdateTrackMutationInput extends UpdateTrackPayload {
   id: Track["id"];

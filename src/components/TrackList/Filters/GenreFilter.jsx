@@ -1,12 +1,12 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-import useGenres from "../../../hooks/useGenres.ts";
-import Progress from "../../common/Progress.tsx";
-import useTrackListSearchParams from "../../../hooks/useTrackListSearchParams.ts";
+import useGenres from "../../../hooks/genres/useGenres.js";
+import Progress from "../../common/Progress";
+import useTrackListSearchParams from "../../../hooks/tracks/useTrackListSearchParams.js";
 import {
   DefaultTrackListSearchParams,
   TrackListSearchParams,
-} from "../../../constants.ts";
+} from "../../../constants";
 
 export function GenreFilter({ disabled }) {
   const [searchParams, setSearchParams] = useTrackListSearchParams();

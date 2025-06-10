@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
-import SortAttributeSelector from "./SortAttributeSelector.jsx";
-import SortOrderSelector from "./SortOrderSelector.jsx";
+import SortAttributeSelector from "./SortAttributeSelector";
+import SortOrderSelector from "./SortOrderSelector";
 
 export function Sorter({ disabled }) {
   return (

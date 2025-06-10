@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { listGenres } from "../api/endpoints";
+import { listGenres } from "../../api/endpoints";
 
 export function useGenres() {
   return useQuery({

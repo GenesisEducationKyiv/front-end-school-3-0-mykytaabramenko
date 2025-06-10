@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ToastContext } from "../contexts/ToastContext.ts";
+import { ToastContext } from "../contexts/ToastContext";
 
 export function ToastProvider({ children }) {
   const [toast, setToast] = useState({ open: false });

@@ -7,11 +7,11 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 
 import defaultCoverImage from "../../assets/default-track-cover-img.png";
-import DeleteDialog from "./DeleteDialog.jsx";
-import useAudioEffects from "./useAudioEffects.js";
-import PlaybackProgress from "./PlaybackProgress.jsx";
-import useDeleteTrackMutation from "../../hooks/useDeleteTrackMutation.ts";
-import { PlaybackStates } from "../../constants.ts";
+import DeleteDialog from "./DeleteDialog";
+import useAudioEffects from "./useAudioEffects";
+import PlaybackProgress from "./PlaybackProgress";
+import useDeleteTrackMutation from "../../hooks/tracks/useDeleteTrackMutation.js";
+import { PlaybackStates } from "../../constants";
 import UploadIcon from "@mui/icons-material/Upload";
 
 export function TrackRow({ track }) {

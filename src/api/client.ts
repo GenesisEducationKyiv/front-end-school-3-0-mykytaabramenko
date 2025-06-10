@@ -1,5 +1,4 @@
 import axios, { type AxiosRequestConfig } from "axios";
-import { handleApiError } from "../utils";
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const apiClient = axios.create({
@@ -9,7 +8,20 @@ const apiClient = axios.create({
 
 apiClient.interceptors.response.use(
   (response) => response.data,
-  (error) => handleApiError(error),
+  (error: unknown): never => {
+    const isInstanceOfError = error instanceof Error;
+    if (!isInstanceOfError) {
+      throw new Error(`Unexpected error happened: ${String(error)}`);
+    }
+
+    const fallbackMessage = `Error while performing API call: ${error.message}`;
+
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.error || fallbackMessage);
+    }
+
+    throw new Error(fallbackMessage);
+  },
 );
 
 function get<TResponse, TRequest = unknown>(
@@ -46,7 +58,7 @@ function put<TResponse, TRequest = unknown>(
   ) as Promise<TResponse>;
 }
 
-function del<TResponse, TRequest = unknown>(
+function remove<TResponse, TRequest = unknown>(
   url: string,
   config?: AxiosRequestConfig<TRequest>,
 ): Promise<TResponse> {
@@ -56,5 +68,5 @@ function del<TResponse, TRequest = unknown>(
   ) as Promise<TResponse>;
 }
 
-export { apiClient, get, post, put, del };
+export { apiClient, get, post, put, remove };
 export default apiClient;
