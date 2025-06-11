@@ -9,6 +9,14 @@ import {
 import { O, pipe } from "@mobily/ts-belt";
 import type { ListTrackParams, Order, SortOption } from "../api/types/track";
 
+type NumberParamKeys =
+  | typeof TrackListSearchParams.PAGE
+  | typeof TrackListSearchParams.LIMIT;
+
+type SortAndOrderShape =
+  | { sort: SortOption; order: Order }
+  | { sort: null; order: null };
+
 export function useTrackListSearchParams(): [
   ListTrackParams,
   SetURLSearchParams,
@@ -54,14 +62,14 @@ function isValidSearchParameter<T>(value: unknown, options: T[]): value is T {
 
 function getNumberParam(
   searchParams: URLSearchParams,
-  key: string,
+  key: NumberParamKeys,
   defaultValue: number,
 ) {
   return pipe(
     O.fromNullable(searchParams.get(key)),
     O.flatMap((value) => {
       const n = Number(value);
-      return isNaN(n) ? O.None : O.Some(n);
+      return Number.isNaN(n) ? O.None : O.Some(n);
     }),
     O.getWithDefault(defaultValue),
   );
@@ -79,10 +87,6 @@ function getValidatedSearchParam<T>(
     ),
   );
 }
-
-type SortAndOrderShape =
-  | { sort: SortOption; order: Order }
-  | { sort: null; order: null };
 
 function getSortAndOrder(searchParams: URLSearchParams): SortAndOrderShape {
   return pipe(
