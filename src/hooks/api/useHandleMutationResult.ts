@@ -3,8 +3,8 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-import { useToastContext } from "../components/contexts/ToastContext";
-import type { ToastOptions } from "../types/toast";
+import { useToastContext } from "../../components/contexts/ToastContext";
+import type { ToastOptions } from "../../types/toast";
 
 interface HandleMutationResultOptions<TData, TPayload> {
   queryKey: string[];

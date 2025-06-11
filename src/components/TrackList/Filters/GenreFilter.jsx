@@ -1,8 +1,8 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-import useGenres from "../../../hooks/genres/useGenres.js";
+import useGenres from "../../../hooks/genres/useGenres";
 import Progress from "../../common/Progress";
-import useTrackListSearchParams from "../../../hooks/tracks/useTrackListSearchParams.js";
+import useTrackListSearchParams from "../../../hooks/tracks/useTrackListSearchParams";
 import {
   DefaultTrackListSearchParams,
   TrackListSearchParams,

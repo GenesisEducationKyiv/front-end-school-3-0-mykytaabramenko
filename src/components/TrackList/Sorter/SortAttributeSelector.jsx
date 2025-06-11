@@ -1,6 +1,6 @@
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-import useTrackListSearchParams from "../../../hooks/tracks/useTrackListSearchParams.js";
+import useTrackListSearchParams from "../../../hooks/tracks/useTrackListSearchParams";
 import {
   DefaultTrackListSearchParams,
   TrackListSearchParams,

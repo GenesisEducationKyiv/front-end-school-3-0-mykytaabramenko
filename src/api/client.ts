@@ -28,44 +28,30 @@ function get<TResponse, TRequest = unknown>(
   url: string,
   config?: AxiosRequestConfig<TRequest>,
 ) {
-  return apiClient.get<TResponse, TResponse, TRequest>(
-    url,
-    config,
-  ) as Promise<TResponse>;
+  return apiClient.get<TResponse, TResponse>(url, config);
 }
 
 function post<TResponse, TRequest = unknown>(
   url: string,
   data: TRequest,
   config?: AxiosRequestConfig<TRequest>,
-): Promise<TResponse> {
-  return apiClient.post<TResponse, TResponse, TRequest>(
-    url,
-    data,
-    config,
-  ) as Promise<TResponse>;
+) {
+  return apiClient.post<TResponse, TResponse>(url, data, config);
 }
 
 function put<TResponse, TRequest = unknown>(
   url: string,
   data: TRequest,
   config?: AxiosRequestConfig<TRequest>,
-): Promise<TResponse> {
-  return apiClient.put<TResponse, TResponse, TRequest>(
-    url,
-    data,
-    config,
-  ) as Promise<TResponse>;
+) {
+  return apiClient.put<TResponse, TResponse, TRequest>(url, data, config);
 }
 
 function remove<TResponse, TRequest = unknown>(
   url: string,
   config?: AxiosRequestConfig<TRequest>,
-): Promise<TResponse> {
-  return apiClient.delete<TResponse, TResponse, TRequest>(
-    url,
-    config,
-  ) as Promise<TResponse>;
+) {
+  return apiClient.delete<TResponse, TResponse>(url, config);
 }
 
 export { apiClient, get, post, put, remove };

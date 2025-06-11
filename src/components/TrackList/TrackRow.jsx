@@ -10,7 +10,7 @@ import defaultCoverImage from "../../assets/default-track-cover-img.png";
 import DeleteDialog from "./DeleteDialog";
 import useAudioEffects from "./useAudioEffects";
 import PlaybackProgress from "./PlaybackProgress";
-import useDeleteTrackMutation from "../../hooks/tracks/useDeleteTrackMutation.js";
+import useDeleteTrackMutation from "../../hooks/tracks/useDeleteTrackMutation";
 import { PlaybackStates } from "../../constants";
 import UploadIcon from "@mui/icons-material/Upload";
 

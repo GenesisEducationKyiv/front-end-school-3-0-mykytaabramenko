@@ -4,7 +4,7 @@ import TrackList from "../components/trackList/TrackList";
 import Actions from "../components/trackList/Actions";
 import AudioProvider from "../components/providers/AudioProvider";
 import CreateButton from "../components/TrackList/CreateButton";
-import { useTracks } from "../hooks/tracks/useTracks.js";
+import { useTracks } from "../hooks/tracks/useTracks";
 
 function Tracks() {
   const { isFetching, data: { data: tracks, meta } = {} } = useTracks();

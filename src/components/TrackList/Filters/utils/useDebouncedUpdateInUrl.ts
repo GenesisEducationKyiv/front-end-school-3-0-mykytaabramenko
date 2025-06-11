@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import useDebounce from "./useDebounce";
+import useDebounce from "../../../../hooks/useDebounce";
 import {
   DefaultTrackListSearchParams,
   TrackListSearchParams,
-} from "../constants";
-import type { ListTrackParams } from "../api/types/track";
+} from "../../../../constants";
+import type { ListTrackParams } from "../../../../api/types/track";
 
 export function useDebouncedUpdateInUrl(
   key: keyof ListTrackParams,

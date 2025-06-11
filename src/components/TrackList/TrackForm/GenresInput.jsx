@@ -1,7 +1,7 @@
 import { Controller } from "react-hook-form";
 import { Autocomplete, Chip } from "@mui/material";
 
-import useGenres from "../../../hooks/genres/useGenres.js";
+import useGenres from "../../../hooks/genres/useGenres";
 import Progress from "../../common/Progress";
 import TextInput from "../../common/TextInput";
 

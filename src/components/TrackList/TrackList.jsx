@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 import TrackRow from "./TrackRow";
-import useTrackListSearchParams from "../../hooks/tracks/useTrackListSearchParams.js";
+import useTrackListSearchParams from "../../hooks/tracks/useTrackListSearchParams";
 import { TrackListSearchParams } from "../../constants";
 
 const headerCells = [

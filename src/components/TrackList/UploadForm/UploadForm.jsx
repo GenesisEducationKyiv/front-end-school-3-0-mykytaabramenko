@@ -1,7 +1,7 @@
 import { Controller, useForm } from "react-hook-form";
 import { Box, Button, FormHelperText } from "@mui/material";
 import FileUploadButton from "./FileUploadButton";
-import useUploadTrackMutation from "../../../hooks/tracks/useUploadTrackMutation.js";
+import useUploadTrackMutation from "../../../hooks/tracks/useUploadTrackMutation";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 

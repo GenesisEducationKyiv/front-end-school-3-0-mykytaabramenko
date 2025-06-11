@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 
 import Modal from "../../common/Modal";
-import useTrack from "../../../hooks/tracks/useTrack.js";
+import useTrack from "../../../hooks/tracks/useTrack";
 import Progress from "../../common/Progress";
 import UploadTrackForm from "../UploadForm/UploadForm";
 

@@ -1,5 +1,5 @@
 import { deleteTrack } from "../../api/endpoints";
-import useHandleMutationResult from "../useHandleMutationResult";
+import useHandleMutationResult from "../api/useHandleMutationResult";
 
 export function useDeleteTrackMutation() {
   return useHandleMutationResult({
