@@ -7,11 +7,11 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 
 import defaultCoverImage from "../../assets/default-track-cover-img.png";
-import DeleteDialog from "./DeleteDialog.jsx";
-import useAudioEffects from "./useAudioEffects.js";
-import PlaybackProgress from "./PlaybackProgress.jsx";
-import useDeleteTrackMutation from "../../hooks/useDeleteTrackMutation.js";
-import { PlaybackStates } from "../../constants.js";
+import DeleteDialog from "./DeleteDialog";
+import useAudioEffects from "./useAudioEffects";
+import PlaybackProgress from "./PlaybackProgress";
+import useDeleteTrackMutation from "../../hooks/tracks/useDeleteTrackMutation";
+import { PlaybackStates } from "../../constants";
 import UploadIcon from "@mui/icons-material/Upload";
 
 export function TrackRow({ track }) {
@@ -24,7 +24,7 @@ export function TrackRow({ track }) {
 
   const isPlaying = playbackData.state === PlaybackStates.PLAYING;
 
-  const deleteMutation = useDeleteTrackMutation(id);
+  const deleteMutation = useDeleteTrackMutation();
 
   function togglePlay() {
     if (!audioFile) return;
@@ -65,7 +65,7 @@ export function TrackRow({ track }) {
   }
 
   async function handleConfirmDelete() {
-    deleteMutation.mutate();
+    deleteMutation.mutate(id);
     setConfirmDeleteOpen(false);
   }
 

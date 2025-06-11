@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 
-import GenreFilter from "./GenreFilter.jsx";
-import ArtistFilter from "./ArtistFilter.jsx";
-import SearchFilter from "./SearchFilter.jsx";
+import GenreFilter from "./GenreFilter";
+import ArtistFilter from "./ArtistFilter";
+import SearchFilter from "./SearchFilter";
 
 export function Filters({ disabled }) {
   return (

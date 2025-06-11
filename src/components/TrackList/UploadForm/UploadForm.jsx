@@ -1,7 +1,7 @@
 import { Controller, useForm } from "react-hook-form";
 import { Box, Button, FormHelperText } from "@mui/material";
-import FileUploadButton from "./FileUploadButton.jsx";
-import useUploadTrackMutation from "../../../hooks/useUploadTrackMutation.js";
+import FileUploadButton from "./FileUploadButton";
+import useUploadTrackMutation from "../../../hooks/tracks/useUploadTrackMutation";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
@@ -16,12 +16,12 @@ export function UploadTrackForm({ trackId }) {
     reValidateMode: "onChange",
   });
 
-  const mutation = useUploadTrackMutation(trackId);
+  const mutation = useUploadTrackMutation();
 
   const onSubmit = (data) => {
     const file = data.file[0];
     const formData = { data: file };
-    mutation.mutate(formData);
+    mutation.mutate({ id: trackId, ...formData });
   };
 
   function handleValidateFile(files) {

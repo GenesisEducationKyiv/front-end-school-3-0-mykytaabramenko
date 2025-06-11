@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AudioContext } from "../contexts/AudioContext.js";
+import { AudioContext } from "../contexts/AudioContext";
 
 export function AudioProvider({ children }) {
   const [currentId, setCurrentId] = useState(null);

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { loadGenres } from "../api/loadGenres.js";
+import { listGenres } from "../../api/endpoints";
 
 export function useGenres() {
   return useQuery({
     queryKey: ["genres"],
-    queryFn: () => loadGenres(),
+    queryFn: () => listGenres(),
   });
 }
 

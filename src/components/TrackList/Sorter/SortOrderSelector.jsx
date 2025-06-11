@@ -1,10 +1,10 @@
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
-import useTrackListSearchParams from "../../../hooks/useTrackListSearchParams.js";
+import useTrackListSearchParams from "../../../hooks/tracks/useTrackListSearchParams";
 import {
   DefaultTrackListSearchParams,
   TrackListSearchParams,
-} from "../../../constants.js";
+} from "../../../constants";
 
 const ORDERS = [
   { value: "asc", label: "Ascending" },

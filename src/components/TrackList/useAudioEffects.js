@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
-import { useAudioContext } from "../contexts/AudioContext.js";
-import { PlaybackStates } from "../../constants.js";
-import { getPlaybackUri } from "../../utils.js";
+import { useAudioContext } from "../contexts/AudioContext";
+import { PlaybackStates } from "../../constants";
+import { getPlaybackUri } from "./utils/getPlaybackUri";
 
 export function useAudioEffects(audioFile, id) {
   const [playbackData, setPlaybackData] = useState({ progress: 0, state: "" });

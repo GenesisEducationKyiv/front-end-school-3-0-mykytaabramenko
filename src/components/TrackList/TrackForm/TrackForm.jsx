@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { Button, Box } from "@mui/material";
 
-import useGenres from "../../../hooks/useGenres.js";
-import GenresInput from "./GenresInput.jsx";
-import TextInput from "../../common/TextInput.jsx";
-import Progress from "../../common/Progress.jsx";
-import { validateImageUrl } from "../../../utils.js";
+import useGenres from "../../../hooks/genres/useGenres";
+import GenresInput from "./GenresInput";
+import TextInput from "../../common/TextInput";
+import Progress from "../../common/Progress";
+import { validateImageUrl } from "../utils/validateImageUrl";
 
 export function TrackForm({
   defaultValues = {

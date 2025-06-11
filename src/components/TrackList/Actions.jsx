@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 
-import Filters from "./Filters/Filters.jsx";
-import Sorter from "./Sorter/Sorter.jsx";
+import Filters from "./Filters/Filters";
+import Sorter from "./Sorter/Sorter";
 
 export function Actions({ disabled }) {
   return (
