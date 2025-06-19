@@ -18,9 +18,11 @@ Audit all dependencies used in the project to:
 
 ## 📦 Tools Used
 
-- `npm audit`
-- `snyk test`
-- Manual package inspection via advisories and `npm info`
+- `npm audit` – to identify vulnerabilities from the NPM advisory database.
+- `snyk test` – for detecting known and emerging vulnerabilities including zero-days.
+- Manual inspection using:
+    - `npm info <package>` for version history and maintenance.
+    - GitHub CVE advisories for deeper investigation.
 
 ---
 
@@ -28,12 +30,12 @@ Audit all dependencies used in the project to:
 
 ### `npm audit` Results:
 
-| Package            | Severity | Direct? | Description | Fix Available |
-|--------------------|----------|---------|-------------|----------------|
-| `brace-expansion`  | Low      | ❌       | Regular Expression Denial of Service ([GHSA-v6h2-p8h4-qcjw](https://github.com/advisories/GHSA-v6h2-p8h4-qcjw)) | ✅ Yes |
-| `vite`             | Moderate | ✅       | Path traversal vulnerability ([GHSA-859w-5945-r5v3](https://github.com/advisories/GHSA-859w-5945-r5v3)) | ✅ Yes |
-| `react-router`     | High     | ❌       | DoS & pre-render data spoofing ([GHSA-cpj6-fhp6-mr6j](https://github.com/advisories/GHSA-cpj6-fhp6-mr6j)) | ✅ Yes |
-| `react-router-dom` | High     | ✅       | Depends on `react-router`, inherits vulnerabilities | ✅ Yes |
+| Package            | Severity | Direct? | Affects Prod? | Description | Fix Available |
+|--------------------|----------|---------|----------------|-------------|----------------|
+| `brace-expansion`  | Low      | ❌       | ❌ No           | Regular Expression Denial of Service ([GHSA-v6h2-p8h4-qcjw](https://github.com/advisories/GHSA-v6h2-p8h4-qcjw)) | ✅ Yes |
+| `vite`             | Moderate | ✅       | ❌ No (Dev only) | Path traversal vulnerability ([GHSA-859w-5945-r5v3](https://github.com/advisories/GHSA-859w-5945-r5v3)) | ✅ Yes |
+| `react-router`     | High     | ❌       | ✅ Yes          | DoS & pre-render data spoofing ([GHSA-cpj6-fhp6-mr6j](https://github.com/advisories/GHSA-cpj6-fhp6-mr6j)) | ✅ Yes |
+| `react-router-dom` | High     | ✅       | ✅ Yes          | Depends on `react-router`, inherits vulnerabilities | ✅ Yes |
 
 ### `snyk` Results:
 ✅ **No known vulnerabilities found** in current packages (as of scan date).  
@@ -57,6 +59,15 @@ Audit all dependencies used in the project to:
 - 🔒 **Zero vulnerabilities** (checked with Snyk and GitHub Advisories).
 - 🧰 **Hook-based API** fully compatible with React.
 - 📦 **Actively maintained**: monthly updates and strong community support.
+
+> ⚠️ **Note on Migration Caution**  
+> While `wouter` is a lightweight and secure alternative, its usage should be carefully considered depending on the project's needs:
+>
+> - `react-router-dom` offers advanced features such as SSR support, lazy loading, and deeply nested routing.
+> - It benefits from a large ecosystem, long-term maintenance, and wide community support.
+> - In contrast, `wouter` is better suited for simpler or lightweight applications and lacks many enterprise-grade capabilities.
+>
+> 🧠 Migration is encouraged only if your routing requirements remain minimal, or if size/security benefits clearly outweigh the need for advanced features.
 
 ---
 
@@ -91,6 +102,14 @@ npm uninstall react-router-dom
 # Step 4: Re-audit the project
 npm audit fix && npm audit
 ```
+
+---
+
+## 📜 License Audit
+
+- Conducted using `snyk test` with license policy enabled.
+- Manually validated flagged licenses via `npm info <package>` and GitHub license files.
+- No highly restrictive licenses (e.g., GPL, AGPL) present in the current dependency tree.
 
 ---
 
